@@ -1,0 +1,905 @@
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_EA07A9AD-F6BC-4C17-B9E9-869772CCD949" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_0C7A8AEB-F71F-4667-AA4E-E45F5E23C752" name="CriterioDos" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_EA07A9AD-F6BC-4C17-B9E9-869772CCD949">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_FFE4777C-673D-4007-BB7F-1C08320450AC" name="sintoma" isCollection="false">
+    <dmn:itemComponent id="_A957F9EB-43FF-469E-AA78-691616F026C8" name="valor" isCollection="false">
+      <dmn:typeRef>Any</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_5FA30A6A-F13D-4382-8C23-E79D93F3D4C7" name="nombre" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_389CC086-CF5E-4323-983B-9C1A0AC4EC9D" name="sintomas" isCollection="true">
+    <dmn:typeRef>sintoma</dmn:typeRef>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_78AFA330-45EE-45B7-895B-8318535170AB" name="sintomas">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6E06420B-F1FC-4D18-B18B-6D4511A88401" name="sintomas" typeRef="sintomas"/>
+  </dmn:inputData>
+  <dmn:inputData id="_2ED02A55-0668-4D73-ACB6-AA1F62001984" name="profesion">
+    <dmn:extensionElements/>
+    <dmn:variable id="_F70B9863-6CA7-4DD2-A69B-3590937D60FF" name="profesion" typeRef="string"/>
+  </dmn:inputData>
+  <dmn:decision id="_E0737B03-C4A8-4875-B1FC-0578A84625FD" name="personal esencial">
+    <dmn:extensionElements/>
+    <dmn:variable id="_9FF2B3BC-62CE-45FB-B42E-36A2A9B0C7D8" name="personal esencial" typeRef="boolean"/>
+    <dmn:informationRequirement id="_2B112637-47B9-464D-BE3B-3693DB91757B">
+      <dmn:requiredInput href="#_2ED02A55-0668-4D73-ACB6-AA1F62001984"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_B8495F3B-BDD2-4A3F-9EC5-BC3F4FACECA0" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_96DF4CD7-5D37-48D8-8F1B-E6579E5E50D8">
+        <dmn:inputExpression id="_5C19D345-E64D-4C23-8695-968F42CD1C3A" typeRef="string">
+          <dmn:text>profesion</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_A69F5FC5-9591-4EC0-9D9F-40136C7481DE"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_94AC6ED8-B7CC-4FDB-B345-35FE13EBAD8D">
+        <dmn:inputEntry id="_142DDC9D-575E-4E0E-AC7A-EEFF5A779B25">
+          <dmn:text>"fuerzas de seguridad"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_5FD89263-7EB9-4EE7-BF95-F3E442D03FB6">
+          <dmn:text>true
+</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_0F3223FB-88FA-4C54-804B-14C1DB1BB994">
+        <dmn:inputEntry id="_DF55771D-8CCC-4AC9-8FC1-8557C3308CF7">
+          <dmn:text>"fuerzas armadas"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_6DD79A4B-67CB-47B2-B032-2C0FB2ED0FB8">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_2EF11BD1-4C63-4E06-9345-4EBFD51F4D3F">
+        <dmn:inputEntry id="_66E22157-79C8-4850-B0BA-0E4370F4985A">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_DCA159B9-CB19-4FCB-A6BC-7A948D5C9DD2">
+          <dmn:text>false</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_1D7F3CFB-E205-48A7-ACAA-DEFAAA2F301A" name="profesional de la salud">
+    <dmn:extensionElements/>
+    <dmn:variable id="_12CAC822-A0D0-4C84-BEAA-888C1E5775DD" name="profesional de la salud" typeRef="boolean"/>
+    <dmn:informationRequirement id="_D5DD4F7F-E63F-43AA-AF42-282305735703">
+      <dmn:requiredInput href="#_2ED02A55-0668-4D73-ACB6-AA1F62001984"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_D910798A-3785-410A-8B39-2E5815089B2B" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_4EE45D60-A1CB-4787-9600-3B1427A6DAFB">
+        <dmn:inputExpression id="_E8375E7C-737A-4058-AE7D-EA24703EC5CE" typeRef="string">
+          <dmn:text>profesion</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_199E6D56-558B-414C-B1AF-CAEA6AE3FFEE"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_3D5E15F9-3A13-4EF3-A6D4-9E3D8B361953">
+        <dmn:inputEntry id="_E9A7B8AA-C246-47F8-9F2E-5C00CA3361C1">
+          <dmn:text>"medicina"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C3777549-B211-462F-A6E8-A9B997C3EC8C">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_7207A202-B916-44E0-B0A2-1D23F6467BE6">
+        <dmn:inputEntry id="_8306D67A-DB60-4810-814A-BC699E4C025F">
+          <dmn:text>"enfermeria"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_A9AC410B-FA83-4C3B-B142-68782DEAD076">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_34F4659F-355D-4F84-B9B3-26B77A7ECA47">
+        <dmn:inputEntry id="_B28E3D7A-CEC5-4D72-A8FA-77E3980BD470">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_E051A842-E7C9-4D29-BD60-F08D1F9D1B3B">
+          <dmn:text>false</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:inputData id="_411B8DC7-BFCF-4E54-9887-265FC736950B" name="contacto estrecho">
+    <dmn:extensionElements/>
+    <dmn:variable id="_691FEFAD-231B-4E1A-B131-8590C03F1024" name="contacto estrecho" typeRef="boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="_D7EC4B8F-AB06-4AD3-8CBB-A9BAC41BFD42" name="direccion">
+    <dmn:extensionElements/>
+    <dmn:variable id="_AE18E1B8-1AFD-401C-8C59-7920EA6D21DA" name="direccion" typeRef="string"/>
+  </dmn:inputData>
+  <dmn:inputData id="_7F2A6785-DECC-4C51-8D97-01AE1DD06116" name="lugar de trabajo">
+    <dmn:extensionElements/>
+    <dmn:variable id="_FCBF3597-426F-4CF6-BA73-B53746A5561D" name="lugar de trabajo" typeRef="string"/>
+  </dmn:inputData>
+  <dmn:decision id="_ABD8D140-983A-46E9-BB2A-4C5A5EF6E6B4" name="resida o trabaje en instituciones cerradas o de internacion prolongada">
+    <dmn:extensionElements/>
+    <dmn:variable id="_FEA18B58-E9C5-4CB9-ABD4-F061F41D2CFE" name="resida o trabaje en instituciones cerradas o de internacion prolongada" typeRef="boolean"/>
+    <dmn:informationRequirement id="_21CFC388-AAF8-4DB4-8B43-86551E25D2A1">
+      <dmn:requiredInput href="#_7F2A6785-DECC-4C51-8D97-01AE1DD06116"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_D083C378-3C7B-46FB-B829-EF5C2F89680D" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_C4492625-2B5C-4643-80E0-AF48BBB1494A">
+        <dmn:inputExpression id="_7334A8CF-C01E-439D-81E4-A9F50A835114" typeRef="string">
+          <dmn:text>lugar de trabajo</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_EA477DAE-F2DD-4BA2-855D-93FD9BA259B6"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_0185DC24-B05A-44AC-AC5C-CB6EDF7786EC">
+        <dmn:inputEntry id="_5BAB4804-39D1-4981-9A92-CACFDC045786">
+          <dmn:text>"penitenciaria"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_A9826538-F5BC-4B23-A1D0-5AE59956C68C">
+          <dmn:text>true
+</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_8DAF3515-2BB2-454D-AE02-EEF106877F50">
+        <dmn:inputEntry id="_64B44453-8F1A-4E6D-B582-D0D2EF70AE0F">
+          <dmn:text>"residencia de adultos mayores"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_CE33305C-9D78-448D-940A-48050B528415">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_7FECB363-B688-47BC-9D16-81CC32C5C0C9">
+        <dmn:inputEntry id="_96374F4A-032E-43A4-8E62-43E27DBE10A9">
+          <dmn:text>"hogar"</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_5ED6B697-7B78-42C2-952A-4FB7036DD3C0">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_C5015717-7EEC-4D74-AFA0-345B3D309D85">
+        <dmn:inputEntry id="_2C37C914-733F-4EDC-A236-35D80987B7A5">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_36AA1580-F359-4845-9B25-7EF92BA1A6AE">
+          <dmn:text>false</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_4FD043BA-A676-487D-94C4-3CF978C8377E" name="Tiene Sintomas">
+    <dmn:extensionElements/>
+    <dmn:variable id="_EA321F5E-2602-4110-95DE-51054781F5A3" name="Tiene Sintomas" typeRef="boolean"/>
+    <dmn:informationRequirement id="_B8673DE0-0A45-4517-924A-5F7B53D277C6">
+      <dmn:requiredInput href="#_78AFA330-45EE-45B7-895B-8318535170AB"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_76CA8C5D-2C21-405D-A15E-6344BE6F8F21">
+      <dmn:requiredKnowledge href="#_B05D3033-473E-4672-B827-E443CF99947D"/>
+    </dmn:knowledgeRequirement>
+    <dmn:context id="_6F20E1C7-8D97-4146-9055-583AB1C754F4">
+      <dmn:contextEntry>
+        <dmn:variable id="_5FF50D98-E4A7-45DB-A21B-3DB03C48479B" name="tiene sintomas" typeRef="sintomas"/>
+        <dmn:literalExpression id="_085E579B-D4FE-4B04-99A4-9DE888F066A0">
+          <dmn:text>for sintoma in sintomas return Tiene Sintoma(sintoma)</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_DAC863CC-2BBA-488B-BBF4-9AFC2ED4BBCF">
+          <dmn:text>any(tiene sintomas)</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:decision id="_06A139CD-7BB6-4038-8A4F-A061BEBCA8AE" name="CasoDos">
+    <dmn:extensionElements/>
+    <dmn:variable id="_81D45532-F46D-4B1A-81F3-A971C28CD323" name="CasoDos" typeRef="boolean"/>
+    <dmn:informationRequirement id="_C3013B49-B0AA-4D55-A8A1-D14D248908E2">
+      <dmn:requiredInput href="#_411B8DC7-BFCF-4E54-9887-265FC736950B"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_3DB5C59B-5F0B-4D01-B13F-D570793EE740">
+      <dmn:requiredInput href="#_D7EC4B8F-AB06-4AD3-8CBB-A9BAC41BFD42"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_6BD28F45-9006-4B3A-9EBE-5DA2F0B4E78F">
+      <dmn:requiredDecision href="#_4FD043BA-A676-487D-94C4-3CF978C8377E"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_BB1036B9-3974-4CC0-A83F-BD2CB001F680">
+      <dmn:requiredDecision href="#_1D7F3CFB-E205-48A7-ACAA-DEFAAA2F301A"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_6E68F50B-2286-4498-8785-6D0CE36AE418">
+      <dmn:requiredDecision href="#_E0737B03-C4A8-4875-B1FC-0578A84625FD"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_9C5DED75-05ED-4229-8A6F-8715397BDA99">
+      <dmn:requiredDecision href="#_ABD8D140-983A-46E9-BB2A-4C5A5EF6E6B4"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_EBE69791-5CE6-4E9D-A05A-472F19D273BA">
+      <dmn:requiredKnowledge href="#_F23ADB26-A53C-4116-8D72-4434F5BD3F56"/>
+    </dmn:knowledgeRequirement>
+    <dmn:decisionTable id="_9AA4099C-9204-45EF-9671-59D858FF5F1A" hitPolicy="ANY" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_658DA693-0889-4B3C-A005-056B8AFC46CE">
+        <dmn:inputExpression id="_3C5CFE02-F6E5-4C41-81B4-555831925E39" typeRef="boolean">
+          <dmn:text>Tiene Sintomas</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_90FBEDA9-C13D-4D26-A990-949C6B1C50AE">
+        <dmn:inputExpression id="_E83D0213-FED5-4FB1-80B9-6BBD4F2DDF37" typeRef="boolean">
+          <dmn:text>contacto estrecho</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_9B5A820A-B602-42E2-BCAD-CA8137F295E6">
+        <dmn:inputExpression id="_C973CCE0-8659-48D7-B10E-6256EE62E17A" typeRef="boolean">
+          <dmn:text>barrios populares(direccion)</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_3219055E-AE01-4CCE-BC94-211035C6544E">
+        <dmn:inputExpression id="_D3C4AD73-14EA-4830-9B5C-FFEE02EBE4B9" typeRef="boolean">
+          <dmn:text>personal esencial</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_AFFB473E-D544-4E8C-95B1-EF76945C24A0">
+        <dmn:inputExpression id="_B22CA494-263C-42B4-90DA-0A103987B4DC" typeRef="boolean">
+          <dmn:text>profesional de la salud</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_0AB53835-5447-49FF-933A-F2F53DE83FBF">
+        <dmn:inputExpression id="_28C80541-160F-4172-8191-0854CC478A93" typeRef="boolean">
+          <dmn:text>resida o trabaje en instituciones cerradas o de internacion prolongada</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_C8E2C57F-6DD1-4892-B2D1-462514831AD4"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_6FBDF690-BE6F-4DAA-BA78-9A4D958F3F80">
+        <dmn:inputEntry id="_84D504AA-7163-484D-AF1F-5CB2B670411C">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5FDD5DEA-F1B9-4790-B598-D94A711B339B">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_2AB8E3E2-7E5F-4AF4-A632-E5F1181E0025">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_D9DE3103-4526-42D1-BCC3-A5F77735495B">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_FC6E6E00-53D5-438D-B842-6FFFD5E2528E">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_9AC0BCCF-4173-4E6E-8C6E-FC1FF386649E">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_99D9F510-CA21-4509-B348-B0B35F51C82C">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_EFB0EA93-9B24-461E-BC3B-7CFD98DF1E52">
+        <dmn:inputEntry id="_A0496AD2-FB54-4CA8-B8EE-BEDBB45220AC">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_CBAB111A-91C0-4DE5-8C7D-2989AEA21C9E">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_F91D940B-F760-4FCB-95FC-39ACBC943AC2">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_6AA70466-9611-4337-BDA9-AB6117DA810F">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_6A498974-8087-496F-B237-F9E94CC8A6E4">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4D0016E1-26D9-4F9C-8E00-0393D4FFBC88">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_46BA8366-5482-4FA8-820C-1D51C671B0F5">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_33E870F3-78FE-4607-BB09-B74482046168">
+        <dmn:inputEntry id="_7ADA2587-BFD4-4438-838D-BF184A3DB7AA">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_DD997466-6455-48D3-A35C-0C156AE5655B">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_B4072F47-936C-4C67-BAF6-9984F104CEBE">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_D7ADDE9E-2387-4D4C-903E-FCFF05264245">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_2D3088CE-B028-45CB-B7B5-0CB5E826AA5F">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_00F845F7-2461-4DE2-9EE1-F052617FE19C">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_C92FF0CF-F5FC-490A-BCA3-28F3C4402E3F">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_372C0B26-B7DA-4646-9998-C54B25EBF923">
+        <dmn:inputEntry id="_69AED890-37FA-464E-98E0-6FF9DC117246">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_DCFE1317-A87C-4058-9060-673EE53D276F">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_8F9EE52D-AF15-4725-8500-689F55EF66CC">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_88CF6874-20BD-437A-A7EE-D8D38849E7D5">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_5E98FF30-0034-4EAD-B913-67387174389A">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_16B9B1EC-91F0-430B-B549-3AC0DD13808F">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_52A6D80A-2587-4EEB-99A7-E86AB2BEDFA7">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_FD9E2699-71F0-457C-A013-CD05941A1D9D">
+        <dmn:inputEntry id="_2B7F310D-DD9A-4623-A1B6-6F650BC8502E">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_B104DE57-2C53-4295-9DE9-A49AF88A1D4A">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_9FFE5801-E58C-425D-A194-2A9B178E83E4">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_38AB2AEF-61DF-4183-B1B9-72F51F54E43F">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_4CFE6209-0DA9-4F07-86B8-092EFDA87FAA">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_9F08B545-DCC6-4C43-A54D-D08C8FE156F5">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_13F3411E-25BE-4DB5-9A01-DA0D306C04DE">
+          <dmn:text>true</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_FB13CCFA-E35C-466A-A03B-E25143D72F20">
+        <dmn:inputEntry id="_3CB39682-F95D-4D9E-9023-C6F3F2E70E7D">
+          <dmn:text>false</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_80AA1639-A19B-4B01-BBE0-6E6AF3CF5915">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_1943819A-4877-420D-85E7-23CC570958FD">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_AC9A827D-3025-4DD9-987A-30B94A95B33A">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_7F001786-0063-4DB6-BF7D-4267CD119CC0">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_B010AFBD-B726-4D17-9982-6C9E6A7668C2">
+          <dmn:text>-</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_B0CDD066-7396-42CD-89D5-5A2A2BBCA41F">
+          <dmn:text>false</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_F23ADB26-A53C-4116-8D72-4434F5BD3F56" name="barrios populares">
+    <dmn:extensionElements/>
+    <dmn:variable id="_6797043D-97E9-498C-92D1-EDA3F33C176D" name="barrios populares" typeRef="boolean"/>
+    <dmn:encapsulatedLogic id="_2F94AAB9-0B06-4D18-860F-B9C60C763B3A" kind="FEEL">
+      <dmn:formalParameter id="_805CC13A-89FC-4F7D-8873-4C049CD09231" name="direccion" typeRef="string"/>
+      <dmn:literalExpression id="_3D34AF4D-6623-4551-A2AD-D4CC0C162A35">
+        <dmn:text>starts with(lower case(direccion),"barrio" )</dmn:text>
+      </dmn:literalExpression>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:businessKnowledgeModel id="_B05D3033-473E-4672-B827-E443CF99947D" name="Tiene Sintoma">
+    <dmn:extensionElements/>
+    <dmn:variable id="_D1D7C070-4E04-476A-9D5E-0C6801F1F727" name="Tiene Sintoma" typeRef="boolean"/>
+    <dmn:encapsulatedLogic id="_83DD5F77-7ACA-4CDC-9AA2-05D62D44278D" kind="FEEL">
+      <dmn:formalParameter id="_DBD716C4-9645-4D46-A499-A628911C381D" name="sintoma" typeRef="sintoma"/>
+      <dmn:context id="_B7CF3A84-8149-4D9A-83C5-13E4BDEFA3CD">
+        <dmn:contextEntry>
+          <dmn:variable id="_AC223327-7348-4DEA-9780-209DF3480C17" name="perdida gusto olfato" typeRef="boolean"/>
+          <dmn:decisionTable id="_B1EEA379-B799-40EF-A739-6552A120EAFA" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+            <dmn:input id="_7C777663-112F-42C7-AB9B-F4C0FE1BA39C">
+              <dmn:inputExpression id="_A3B6CC36-9C02-46CA-B323-C3D4D57F8C30" typeRef="string">
+                <dmn:text>sintoma.nombre</dmn:text>
+              </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_00A76AD2-A1D5-41A8-B4D1-345632E8E831">
+              <dmn:inputExpression id="_61F95DCA-E51A-4B09-8EDE-A932339AE3E7" typeRef="Any">
+                <dmn:text>sintoma.valor</dmn:text>
+              </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_EF65A35F-7CDE-48AC-A4A1-58D886C3C238"/>
+            <dmn:annotation name="annotation-1"/>
+            <dmn:rule id="_A6017BE7-F86C-423F-8884-40DE7A2484AA">
+              <dmn:inputEntry id="_25F300F4-38EB-4916-8069-092746B691E9">
+                <dmn:text>"perdida gusto"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_A1BFC689-FB4B-4729-9354-1D963766DDB1">
+                <dmn:text>true</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_A0F96D43-1C37-4818-BC6A-E15743362C11">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_BDC53945-9759-45BE-8FEF-3C57A3CC274B">
+              <dmn:inputEntry id="_54115FC7-F47C-4CA9-B43F-A048FE97BE21">
+                <dmn:text>"perdida olfato"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_8B0A10CC-EECE-43E3-B958-71DBBBE0D174">
+                <dmn:text>true</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_EB5425DE-CDC9-4F52-A911-BC2183A239F2">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_8CB167BE-73BF-468C-8E9B-757F852B0AD5">
+              <dmn:inputEntry id="_E45AD271-8827-42CE-949D-49B116F2F081">
+                <dmn:text>-</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_8B0C98AC-13D7-463E-B86F-E417A52A87C6">
+                <dmn:text>-</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_E261EAFD-08DD-46D9-9ABB-110520B39E55">
+                <dmn:text>false</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+          </dmn:decisionTable>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_1746BF9F-A384-40E3-A1AF-1B16BCBE3D4A" name="otros sintomas" typeRef="boolean"/>
+          <dmn:decisionTable id="_A6433CE0-7D88-430C-AC59-B271CAA0A9BF" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+            <dmn:input id="_BAAD37B7-B59B-4E8F-8371-0A9446E8F67A">
+              <dmn:inputExpression id="_575754B4-534D-4222-A1F5-90DFE2959456" typeRef="string">
+                <dmn:text>sintoma.nombre</dmn:text>
+              </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_DC09425F-FE1F-46AF-AC4A-A41A8E66292B">
+              <dmn:inputExpression id="_229A818F-539F-48BF-8B8F-161941A0C6A5" typeRef="Any">
+                <dmn:text>sintoma.valor</dmn:text>
+              </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_FE678F44-BDDD-4B87-8C92-78B41D40E422"/>
+            <dmn:annotation name="annotation-1"/>
+            <dmn:rule id="_CCFD873D-30B7-4136-A785-69888BA11233">
+              <dmn:inputEntry id="_A5493C5B-B1E0-49D3-8E84-56B4CB5EF808">
+                <dmn:text>"odinofagia"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_0DEFA4B3-1BDB-4487-8B6F-DCC789869D06">
+                <dmn:text>true</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_56E30044-7824-4D6C-83B5-2F9D462791F5">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_363E8311-3D5F-47AB-A7D8-E44FCBDCC9E7">
+              <dmn:inputEntry id="_ADACBEAC-E748-4C70-AE3C-E0706B027A2A">
+                <dmn:text>"tos"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_4D9105A0-0756-4328-B67C-AD1FE647209E">
+                <dmn:text>true</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_75F8375C-1780-431C-9DF1-67D957EFE17C">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_75271D7F-352E-434F-9BC7-037B44796A87">
+              <dmn:inputEntry id="_274C6C27-7285-4674-BAA0-193F2DFA0F18">
+                <dmn:text>"temperatura"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_CCE8C2E4-4707-44AD-8C15-E237C5B618BD">
+                <dmn:text>&gt;=37.5</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_96B9120C-CEFF-49FB-BA31-83C05C683999">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_BDC74C21-FDBB-4F63-83EC-190811E8A9A5">
+              <dmn:inputEntry id="_7569648F-E2E4-42CE-BBCF-0BFD8643429B">
+                <dmn:text>-</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_B5A68865-62C0-425B-AA01-1EB666C79EEA">
+                <dmn:text>-</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_A2AC22DC-8FCB-4AA5-9066-9696B2702700">
+                <dmn:text>false</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+          </dmn:decisionTable>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:variable id="_90098FD5-61F0-44D5-AD75-BD3BA189D549" name="dificultad respiratoria" typeRef="boolean"/>
+          <dmn:decisionTable id="_BB99220C-40C2-43A1-9765-4C52148D4041" hitPolicy="FIRST" preferredOrientation="Rule-as-Row">
+            <dmn:input id="_BA7077E9-0100-48A8-ABE7-3293A1D53465">
+              <dmn:inputExpression id="_E5F2678B-FCC4-4FAF-987E-D3909D83DFE1" typeRef="string">
+                <dmn:text>sintoma.nombre</dmn:text>
+              </dmn:inputExpression>
+            </dmn:input>
+            <dmn:input id="_054515F5-B4E3-406C-AC87-3C8150EE7635">
+              <dmn:inputExpression id="_151FE060-C633-4B11-BF8B-53FC5507CC54" typeRef="Any">
+                <dmn:text>sintoma.valor</dmn:text>
+              </dmn:inputExpression>
+            </dmn:input>
+            <dmn:output id="_92AA9815-04B9-47C1-BC2C-69A513FEE9E9"/>
+            <dmn:annotation name="annotation-1"/>
+            <dmn:rule id="_7A7026CB-87C6-4FFE-9FEF-BD5EB51C6231">
+              <dmn:inputEntry id="_6B027596-A0E7-47C4-A7C4-173B86F812D1">
+                <dmn:text>"saturacion"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_187A555A-51C2-4468-AF3A-430CD619ED13">
+                <dmn:text>&lt;94</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_AAE173B1-644A-4F7B-98E1-421B8CC1D3DF">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_533C5069-0247-4C2A-86AB-ACE1A066D5A5">
+              <dmn:inputEntry id="_07C34034-4925-41E7-8002-70F9E8275B8C">
+                <dmn:text>"frecuencia"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_E9E1C250-315F-44F7-8CC9-826D9716C780">
+                <dmn:text>&gt;24</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_4A513354-1441-461C-9AB8-8A54E307747C">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_FD04CBBB-0303-4DEE-9EC8-7D31C155CE4B">
+              <dmn:inputEntry id="_B6836DCD-EAA0-41C7-99B6-A6494CDCD08B">
+                <dmn:text>"musculos accesorios"</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_67623482-A8AB-41CB-B1D3-14792C1AB92D">
+                <dmn:text>true</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_FE097F28-EC1B-4F71-B386-363F50DCAD6E">
+                <dmn:text>true</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+            <dmn:rule id="_C446C261-8D00-4332-8D46-6D5073CF3A71">
+              <dmn:inputEntry id="_BB31CFB2-9F5A-41A9-B814-5C247DF67276">
+                <dmn:text>-</dmn:text>
+              </dmn:inputEntry>
+              <dmn:inputEntry id="_6EAE5995-8AA0-4BD6-A44E-A581FBA9417C">
+                <dmn:text>-</dmn:text>
+              </dmn:inputEntry>
+              <dmn:outputEntry id="_40009300-156B-4719-AD90-A63470C5D544">
+                <dmn:text>false</dmn:text>
+              </dmn:outputEntry>
+              <dmn:annotationEntry>
+                <dmn:text/>
+              </dmn:annotationEntry>
+            </dmn:rule>
+          </dmn:decisionTable>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:literalExpression id="_B63E0C29-A606-4E19-AAB8-2C1F9BBD0507">
+            <dmn:text>dificultad respiratoria or otros sintomas or perdida gusto olfato</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+      </dmn:context>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_DCB3F005-D6EA-4B21-AC44-E142F2E6E4FD" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_B8495F3B-BDD2-4A3F-9EC5-BC3F4FACECA0">
+            <kie:width>50</kie:width>
+            <kie:width>360</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D910798A-3785-410A-8B39-2E5815089B2B">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>301</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_D083C378-3C7B-46FB-B829-EF5C2F89680D">
+            <kie:width>50</kie:width>
+            <kie:width>410</kie:width>
+            <kie:width>342</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6F20E1C7-8D97-4146-9055-583AB1C754F4">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_085E579B-D4FE-4B04-99A4-9DE888F066A0">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DAC863CC-2BBA-488B-BBF4-9AFC2ED4BBCF">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_9AA4099C-9204-45EF-9671-59D858FF5F1A">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>234</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_3D34AF4D-6623-4551-A2AD-D4CC0C162A35">
+            <kie:width>622</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_2F94AAB9-0B06-4D18-860F-B9C60C763B3A">
+            <kie:width>50</kie:width>
+            <kie:width>622</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B7CF3A84-8149-4D9A-83C5-13E4BDEFA3CD">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>1252</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B1EEA379-B799-40EF-A739-6552A120EAFA">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>882</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_A6433CE0-7D88-430C-AC59-B271CAA0A9BF">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>882</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_BB99220C-40C2-43A1-9765-4C52148D4041">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>882</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_B63E0C29-A606-4E19-AAB8-2C1F9BBD0507">
+            <kie:width>1252</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_83DD5F77-7ACA-4CDC-9AA2-05D62D44278D">
+            <kie:width>50</kie:width>
+            <kie:width>1422</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_78AFA330-45EE-45B7-895B-8318535170AB" dmnElementRef="_78AFA330-45EE-45B7-895B-8318535170AB" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="433.29906542056074" y="470" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_2ED02A55-0668-4D73-ACB6-AA1F62001984" dmnElementRef="_2ED02A55-0668-4D73-ACB6-AA1F62001984" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="743" y="374" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_E0737B03-C4A8-4875-B1FC-0578A84625FD" dmnElementRef="_E0737B03-C4A8-4875-B1FC-0578A84625FD" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="779" y="238" width="182" height="82"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_1D7F3CFB-E205-48A7-ACAA-DEFAAA2F301A" dmnElementRef="_1D7F3CFB-E205-48A7-ACAA-DEFAAA2F301A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="631" y="254" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_411B8DC7-BFCF-4E54-9887-265FC736950B" dmnElementRef="_411B8DC7-BFCF-4E54-9887-265FC736950B" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="76" y="468" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_D7EC4B8F-AB06-4AD3-8CBB-A9BAC41BFD42" dmnElementRef="_D7EC4B8F-AB06-4AD3-8CBB-A9BAC41BFD42" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="243.29906542056074" y="468" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_7F2A6785-DECC-4C51-8D97-01AE1DD06116" dmnElementRef="_7F2A6785-DECC-4C51-8D97-01AE1DD06116" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="1076" y="385" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_ABD8D140-983A-46E9-BB2A-4C5A5EF6E6B4" dmnElementRef="_ABD8D140-983A-46E9-BB2A-4C5A5EF6E6B4" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="1012" y="228" width="230" height="101"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_4FD043BA-A676-487D-94C4-3CF978C8377E" dmnElementRef="_4FD043BA-A676-487D-94C4-3CF978C8377E" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="435" y="369" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_06A139CD-7BB6-4038-8A4F-A061BEBCA8AE" dmnElementRef="_06A139CD-7BB6-4038-8A4F-A061BEBCA8AE" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="645" y="33" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_F23ADB26-A53C-4116-8D72-4434F5BD3F56" dmnElementRef="_F23ADB26-A53C-4116-8D72-4434F5BD3F56" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="243" y="33" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_B05D3033-473E-4672-B827-E443CF99947D" dmnElementRef="_B05D3033-473E-4672-B827-E443CF99947D" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="598.2990654205607" y="420.3421052631579" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_2B112637-47B9-464D-BE3B-3693DB91757B" dmnElementRef="_2B112637-47B9-464D-BE3B-3693DB91757B">
+        <di:waypoint x="793" y="399"/>
+        <di:waypoint x="870" y="320"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_D5DD4F7F-E63F-43AA-AF42-282305735703" dmnElementRef="_D5DD4F7F-E63F-43AA-AF42-282305735703">
+        <di:waypoint x="793" y="399"/>
+        <di:waypoint x="681" y="304"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_21CFC388-AAF8-4DB4-8B43-86551E25D2A1" dmnElementRef="_21CFC388-AAF8-4DB4-8B43-86551E25D2A1">
+        <di:waypoint x="1126" y="410"/>
+        <di:waypoint x="1127" y="329"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_B8673DE0-0A45-4517-924A-5F7B53D277C6" dmnElementRef="_B8673DE0-0A45-4517-924A-5F7B53D277C6">
+        <di:waypoint x="483.29906542056074" y="495"/>
+        <di:waypoint x="485" y="419"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_76CA8C5D-2C21-405D-A15E-6344BE6F8F21" dmnElementRef="_76CA8C5D-2C21-405D-A15E-6344BE6F8F21">
+        <di:waypoint x="648.2990654205607" y="445.3421052631579"/>
+        <di:waypoint x="485" y="419"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_C3013B49-B0AA-4D55-A8A1-D14D248908E2" dmnElementRef="_C3013B49-B0AA-4D55-A8A1-D14D248908E2">
+        <di:waypoint x="126" y="493"/>
+        <di:waypoint x="695" y="83"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_3DB5C59B-5F0B-4D01-B13F-D570793EE740" dmnElementRef="_3DB5C59B-5F0B-4D01-B13F-D570793EE740">
+        <di:waypoint x="293.29906542056074" y="493"/>
+        <di:waypoint x="695" y="83"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_6BD28F45-9006-4B3A-9EBE-5DA2F0B4E78F" dmnElementRef="_6BD28F45-9006-4B3A-9EBE-5DA2F0B4E78F">
+        <di:waypoint x="485" y="394"/>
+        <di:waypoint x="695" y="83"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_BB1036B9-3974-4CC0-A83F-BD2CB001F680" dmnElementRef="_BB1036B9-3974-4CC0-A83F-BD2CB001F680">
+        <di:waypoint x="681" y="279"/>
+        <di:waypoint x="695" y="83"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_6E68F50B-2286-4498-8785-6D0CE36AE418" dmnElementRef="_6E68F50B-2286-4498-8785-6D0CE36AE418">
+        <di:waypoint x="870" y="279"/>
+        <di:waypoint x="695" y="83"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_9C5DED75-05ED-4229-8A6F-8715397BDA99" dmnElementRef="_9C5DED75-05ED-4229-8A6F-8715397BDA99">
+        <di:waypoint x="1127" y="278.5"/>
+        <di:waypoint x="695" y="58"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_EBE69791-5CE6-4E9D-A05A-472F19D273BA" dmnElementRef="_EBE69791-5CE6-4E9D-A05A-472F19D273BA">
+        <di:waypoint x="293" y="58"/>
+        <di:waypoint x="645" y="58"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

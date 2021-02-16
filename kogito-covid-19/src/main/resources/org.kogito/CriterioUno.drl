@@ -1,0 +1,144 @@
+package org.kogito;
+unit CriterioUnoUnit;
+
+rule "Fiebre alta"
+when
+    /sintomas[ nombre == "temperatura", valor > 37.5]
+then
+    Criterio crit = new Criterio("Fiebre");
+    criterios.append(crit);
+end
+
+rule "Tos"
+when
+    /sintomas[ nombre == "tos", valor == true]
+then
+    Criterio crit = new Criterio("tos");
+    criterios.append(crit);
+end
+
+rule "Odinofagia"
+when
+    /sintomas[ nombre == "odinofagia", valor == true]
+then
+    Criterio crit = new Criterio("tos");
+    criterios.append(crit);
+end
+
+rule "Saturacion"
+activation-group "dificultad_respiratoria"
+when
+    /sintomas[ nombre == "saturacion", valor <= 94]
+then
+    Criterio crit = new Criterio("Dificultad Respiratoria");
+    criterios.append(crit);
+end
+
+rule "Frecuencia"
+activation-group "dificultad_respiratoria"
+when
+    /sintomas[ nombre == "frecuencia", valor >= 24]
+then
+    Criterio crit = new Criterio("Dificultad Respiratoria");
+    criterios.append(crit);
+end
+
+rule "Musculos Accesorios"
+activation-group "dificultad_respiratoria"
+when
+    /sintomas[ nombre == "musculos accesorios", valor == true] 
+then
+    Criterio crit = new Criterio("Dificultad Respiratoria");
+    criterios.append(crit);
+end
+
+rule "Anosmia"
+activation-group "anosmia_disgeusia"
+when
+    /sintomas[ nombre == "anosmia", valor == true ]
+then
+    Criterio crit = new Criterio("Anosmia o Disgeusia");
+    criterios.append(crit);
+end
+
+rule "Disgeusia"
+activation-group "anosmia_disgeusia"
+when
+    /sintomas[ nombre == "disgeusia", valor == true ]
+then
+    Criterio crit = new Criterio("Anosmia o Disgeusia");
+    criterios.append(crit);
+end
+
+rule "Cefalea"
+when
+    /sintomas[ nombre == "cefalea", valor == true]
+then
+    Criterio crit = new Criterio("Cefalea");
+    criterios.append(crit);
+end
+
+// rule "Diarrea"
+// activation-group "diarrea_vomitos"
+// when
+//     /sintomas[ nombre == "diarrea", valor == true]
+// then
+//     Criterio crit = new Criterio("diarrea_vomitos");
+//     criterios.append(crit);
+// end
+
+// rule "Vomitos"
+// activation-group "diarrea_vomitos"
+// when
+//     /sintomas[ nombre == "vomitos", valor == true]
+// then
+//     Criterio crit = new Criterio("diarrea_vomitos");
+//     criterios.append(crit);
+// end
+
+
+// MOSTRAR COMO ESTO NO FUNCIONA
+// rule "Diarrea y/o vomitos"
+// no-loop
+// when
+//     /sintomas[ nombre == "diarrea"|| nombre == "vomitos" , valor == true]
+
+// then
+//     Criterio crit = new Criterio("diarrea_vomitos");
+//     criterios.append(crit);
+// end
+
+rule "Diarrea y/o vomitos"
+when
+    $a: /sintomas[ nombre == "diarrea", valor == true] or
+    /sintomas[ nombre == "vomitos" , valor == true, this != $a]
+
+    
+then
+    Criterio crit = new Criterio("diarrea_vomitos");
+    criterios.append(crit);
+end
+
+
+rule "Enfermedad respiratoria aguda severa sin otra etiologia"
+when
+    /sintomas[ nombre == "enfermedad_respiratoria", valor == true]
+then
+    Criterio crit = new Criterio("enfermedad_respiratoria_aguda_severa");
+    criterios.append(crit);
+end
+
+rule "Caso Sospechoso"
+when
+    accumulate(/criterios;$count:count(1))
+then
+    casoSospechoso.set($count>=2);
+end
+
+query IsCasoSospechoso
+    $isCasoSospechoso: /casoSospechoso
+end
+
+query Criterios
+   $criterios: /criterios
+end

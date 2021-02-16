@@ -1,0 +1,45 @@
+
+@containerId=org.kie.covid:COVID-19:1.0.0-SNAPSHOT
+
+###
+POST http://localhost:8080/kie-server/services/rest/server/containers/instances/{{containerId}}
+Authorization: Basic krisv krisv
+content-type: application/json
+
+{
+  "lookup": "covid",
+  "commands": [ 
+    {
+   "insert": {
+        "object": {
+          "org.kie.covid.Symptom": {
+            "name": "temperature",
+            "value": 38
+          }
+        },
+        "return-object": true
+      }
+    },
+     {
+   "insert": {
+        "object": {
+          "org.kie.covid.Symptom": {
+            "name": "temperature",
+            "value": 38
+          }
+        },
+        "return-object": true
+      }
+    },
+    {
+      "fire-all-rules": {
+        "out-identifier": "firedActivations"
+      }
+    },
+    {"query":{"out-identifier":"isSuspectcase","name":"IsSuspectCase"}}
+    
+  ]
+}
+
+
+###

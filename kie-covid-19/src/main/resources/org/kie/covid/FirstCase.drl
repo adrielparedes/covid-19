@@ -1,0 +1,119 @@
+package org.kie.covid;
+
+import org.kie.covid.Symptom;
+import org.kie.covid.Criterion;
+
+rule "High Fever"
+when
+    Symptom(name == "temperature", value > 37.5)
+then
+    Criterion crit = new Criterion("Fever");
+    insert(crit);
+end
+
+rule "Cough"
+when
+    Symptom( name == "cough", value == true)
+then
+    Criterion crit = new Criterion("Cough");
+    insert(crit);
+end
+
+rule "Odynophagia"
+when
+    Symptom( name == "odynophagia", value == true)
+then
+    Criterion crit = new Criterion("Odynophagia");
+    insert(crit);
+end
+
+rule "Saturation"
+activation-group "respiratory_distress"
+when
+    Symptom( name == "saturation", value <= 94)
+then
+    Criterion crit = new Criterion("Respiratory Distress");
+    insert(crit);
+end
+
+rule "Frecuency"
+activation-group "respiratory_distress"
+when
+    Symptom( name == "frecuency", value >= 24)
+then
+    Criterion crit = new Criterion("Respiratory Distress");
+    insert(crit);
+end
+
+rule "Accessories Muscles"
+activation-group "respiratory_distress"
+when
+    Symptom( name == "accessories muscles", value == true)
+then
+    Criterion crit = new Criterion("Respiratory Distress");
+    insert(crit);
+end
+
+rule "Anosmia"
+activation-group "anosmia_dysgeusia"
+when
+    Symptom( name == "anosmia", value == true )
+then
+    Criterion crit = new Criterion("Anosmia or Dysgeusia");
+    insert(crit);
+end
+
+rule "Dysgeusia"
+activation-group "anosmia_dysgeusia"
+when
+    Symptom( name == "dysgeusia", value == true )
+then
+    Criterion crit = new Criterion("Anosmia or Dysgeusia");
+    insert(crit);
+end
+
+rule "Headache"
+when
+    Symptom( name == "headache", value == true)
+then
+    Criterion crit = new Criterion("Headache");
+    insert(crit);
+end
+
+rule "Diarrhea"
+activation-group "diarrhea_vomits"
+when
+    Symptom( name == "diarrhea", value == true)
+then
+    Criterion crit = new Criterion("diarrhea_vomits");
+    insert(crit);
+end
+
+rule "Vomits"
+activation-group "diarrhea_vomits"
+when
+    Symptom( name == "vomits", value == true)
+then
+    Criterion crit = new Criterion("diarrhea_vomits");
+    insert(crit);
+end
+
+
+rule "Severe acute respiratory disease without other etiology"
+when
+    Symptom( name == "respiratory_disease", value ==  true)
+then
+    Criterion crit = new Criterion("severe_acute_respiratory_disease");
+    insert(crit);
+end
+
+rule "Suspect Case"
+when
+    accumulate(Criterion();$count:count(1))
+then
+    insert(new Result($count));
+end
+
+query IsSuspectCase
+    $isSuspectCase: Result(count>=2)
+end

@@ -1,0 +1,5 @@
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+    <kbase name="covid" default="true" packages="org.kie.covid">
+        <ksession name="covid" default="true" type="stateless" />
+    </kbase>
+</kmodule>

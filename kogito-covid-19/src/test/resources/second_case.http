@@ -1,0 +1,33 @@
+POST http://localhost:8080/SecondCase
+content-type: application/json
+
+{
+  "sintomas": [
+    {
+      "nombre": "diarrea",
+      "valor": true
+    },
+     {
+      "nombre": "vomitos",
+      "valor": true
+    }
+  ]
+}
+###
+POST http://localhost:8080/CriterioDos/dmnresult
+content-type: application/json
+
+{
+  "sintomas":[
+    {
+      "nombre": "temperatura",
+      "valor": 32
+    },
+    {"nombre":"odinofagia",
+    "valor":true}],
+  "direccion":"barrio 11-14",
+  "contacto estrecho":false,
+  "profesion":"medicina",
+  "lugar de trabajo":"Fuerzas Armadas"
+}
+###

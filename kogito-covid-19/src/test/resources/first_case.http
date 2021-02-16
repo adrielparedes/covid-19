@@ -1,0 +1,36 @@
+POST http://localhost:8080/is-suspect-case
+content-type: application/json
+
+{
+  "symptoms": [
+    {
+      "name": "diarrhea",
+      "value": true
+    },
+     {
+      "name": "vomits",
+      "value": true
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/criterios
+content-type: application/json
+
+{
+  "symptoms": [
+     {
+      "name": "temperature",
+      "value": 39
+    },
+    {
+      "name": "diarrea",
+      "value": true
+    },
+     {
+      "name": "vomits",
+      "value": true
+    }
+  ]
+}

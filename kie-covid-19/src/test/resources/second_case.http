@@ -1,0 +1,35 @@
+
+@containerId=org.kie.covid:COVID-19:1.0.0-SNAPSHOT
+
+
+###
+GET http://localhost:8080/kie-server/services/rest/server/containers/{{containerId}}/dmn/
+Authorization: Basic krisv krisv
+content-type: application/json
+
+
+
+###
+POST http://localhost:8080/kie-server/services/rest/server/containers/{{containerId}}/dmn
+Authorization: Basic krisv krisv
+content-type: application/json
+
+{
+   "model-namespace": "https://kiegroup.org/dmn/_EA07A9AD-F6BC-4C17-B9E9-869772CCD949",
+          "model-name": "SecondCase",
+          "dmn-context" : {"symptoms":[
+    {
+      "name": "temperature",
+      "value": 32
+    },
+    {
+      "name":"odynophagia",
+    "value":true
+    }
+    ],
+  "address":"slum 11-14",
+  "close contact":false,
+  "profession":"medicine",
+  "workplace":"army"}
+}
+###
